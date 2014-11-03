@@ -24,7 +24,8 @@ namespace Recruitment.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap*"));
+                        "~/Content/bootstrap*",
+                        "~/Content/recruitment.css"));
         }
     }
 }

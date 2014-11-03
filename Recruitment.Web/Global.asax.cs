@@ -1,5 +1,4 @@
-﻿using MySql.Data.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -25,8 +24,6 @@ namespace Recruitment.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-
-            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
     }
 }

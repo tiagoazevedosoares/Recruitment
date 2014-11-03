@@ -10,7 +10,7 @@ namespace Recruitment.Model
     {
         Added,
         CVSentToClient,
-        TelefoneScreening,
+        TelephoneScreening,
         FaceToFace,
         Rejected
     }

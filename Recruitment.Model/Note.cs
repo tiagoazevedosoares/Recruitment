@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Recruitment.Model
 {
-    public class Note
+    public class Note : BaseModel
     {
         public int NoteId { get; set; }
         public string Text { get; set; }

@@ -15,6 +15,9 @@ namespace Recruitment.Model
         public string LastName { get; set; }
         public List<string> Tags { get; set; }
 
+        public int? CompanyId { get; set; }
+        public virtual Company Company { get; set; }
+
         public virtual ICollection<Client> Clients { get; set; }
         
         public virtual ICollection<Profile> Profiles { get; set; }

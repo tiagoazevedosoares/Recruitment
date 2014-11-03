@@ -12,18 +12,9 @@ namespace Recruitment.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            var s = new UnitOfWork().RecruiterRepository.Get();
 
-            var s = new RecruitmentContext().Recruiters.ToList();
-
-            //var s2 = new RecruitmentContext().Recruiters.Include("Candidates").ToList();
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
+            return View(s);
         }
     }
 }
