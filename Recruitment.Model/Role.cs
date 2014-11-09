@@ -11,7 +11,6 @@ namespace Recruitment.Model
         public int RoleId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<string> Tags { get; set; }
 
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
@@ -20,5 +19,7 @@ namespace Recruitment.Model
         public virtual Recruiter Recruiter { get; set; }
 
         public virtual ICollection<Application> Applications { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

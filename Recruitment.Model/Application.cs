@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Recruitment.Model
 {
-    public enum ApplicationStatus : int
-    {
-        Added,
-        CVSentToClient,
-        TelephoneScreening,
-        FaceToFace,
-        Rejected
-    }
-
     public class Application : BaseModel
     {
         public int ApplicationId { get; set; }

@@ -12,22 +12,23 @@ namespace Recruitment.Data
         private RecruitmentContext context = new RecruitmentContext();
 
         private GenericRepository<Recruiter> recruiterRepository;
-        private GenericRepository<Profile> candidateRepository;
+        private GenericRepository<Profile> profileRepository;
         private GenericRepository<Client> clientRepository;
         private GenericRepository<Role> roleRepository;
         private GenericRepository<Application> applicationRepository;
         private GenericRepository<Note> noteRepository;
+        private GenericRepository<Tag> tagRepository;
 
-        public GenericRepository<Profile> CandidateRepository
+        public GenericRepository<Profile> ProfileRepository
         {
             get
             {
 
-                if (this.candidateRepository == null)
+                if (this.profileRepository == null)
                 {
-                    this.candidateRepository = new GenericRepository<Profile>(context);
+                    this.profileRepository = new GenericRepository<Profile>(context);
                 }
-                return this.candidateRepository;
+                return this.profileRepository;
             }
         }
         public GenericRepository<Recruiter> RecruiterRepository
@@ -88,6 +89,18 @@ namespace Recruitment.Data
                     this.noteRepository = new GenericRepository<Note>(context);
                 }
                 return this.noteRepository;
+            }
+        }
+        public GenericRepository<Tag> TagRepository
+        {
+            get
+            {
+
+                if (this.tagRepository == null)
+                {
+                    this.tagRepository = new GenericRepository<Tag>(context);
+                }
+                return this.tagRepository;
             }
         }
 

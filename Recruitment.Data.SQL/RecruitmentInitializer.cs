@@ -12,6 +12,25 @@ namespace Recruitment.Data
     {
         protected override void Seed(RecruitmentContext context)
         {
+            //tags
+            var tags = new List<Tag>
+            {
+                new Tag{Name = ".NET"},
+                new Tag{Name = "C#"},
+                new Tag{Name = "ASP.NET"},
+                new Tag{Name = "Webforms"},
+                new Tag{Name = "MVC"},
+                new Tag{Name = "Python"},
+                new Tag{Name = "Javascript"},
+                new Tag{Name = "jquery"},
+                new Tag{Name = "bootstrap"},
+                new Tag{Name = "AngularJS"},
+                new Tag{Name = "KnockoutJS"},
+                new Tag{Name = "SQL Server"}
+            };
+            tags.ForEach(t => context.Tags.Add(t));
+            context.SaveChanges();
+
             //companies
             var companies = new List<Company>
             {
@@ -29,20 +48,47 @@ namespace Recruitment.Data
             recruiters.ForEach(r => context.Recruiters.Add(r));
             context.SaveChanges();
 
+            foreach (Recruiter rec in recruiters)
+            {
+                rec.Tags = new List<Tag>();
+                rec.Tags.Add(tags[0]);
+                rec.Tags.Add(tags[1]);
+                rec.Tags.Add(tags[2]);
+                rec.Tags.Add(tags[3]);
+                rec.Tags.Add(tags[4]);
+
+                context.Recruiters.Attach(rec);
+            }
+            context.SaveChanges();
+
             //candidates
             var candidates = new List<Profile>
             {
                 new Profile{FirstName = "André", LastName = "Soares", Email = "tiago@email.com", CreateDate = DateTime.Now, CreateUser = "seeder"},
                 new Profile{FirstName = "Augusta", LastName = "Goncalves", Email = "claudia@email.com", CreateDate = DateTime.Now, CreateUser = "seeder"}
             };
-            candidates.ForEach(c => context.Candidates.Add(c));
+            candidates.ForEach(c => context.Profiles.Add(c));
+            context.SaveChanges();
+
+            foreach (Profile prof in candidates)
+            {
+                prof.Tags = new List<Tag>();
+                prof.Tags.Add(tags[0]);
+                prof.Tags.Add(tags[1]);
+                prof.Tags.Add(tags[2]);
+                prof.Tags.Add(tags[3]);
+                if (prof.ProfileId == 1)
+                    prof.Tags.Add(tags[4]);
+
+                context.Profiles.Attach(prof);
+            }
             context.SaveChanges();
 
             //clients
             var clients = new List<Client>
             {
-                new Client{Name = "Bank ABC", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Client{Name = "Inovation Ltd.", Tags = new List<string>(){".net", "c#", "asp.net", "webforms"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Client{Name = "Bank ABC", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Client{Name = "Inovation Ltd.", CreateDate = DateTime.Now, CreateUser = "seeder"},
             };
             clients.ForEach(c => context.Clients.Add(c));
             context.SaveChanges();
@@ -58,17 +104,46 @@ namespace Recruitment.Data
             }
             context.SaveChanges();
 
+            foreach (Client client in clients)
+            {
+                client.Tags = new List<Tag>();
+                client.Tags.Add(tags[0]);
+                client.Tags.Add(tags[1]);
+                client.Tags.Add(tags[2]);
+                client.Tags.Add(tags[3]);
+                if (client.ClientId == 1)
+                    client.Tags.Add(tags[4]);
+
+                context.Clients.Attach(client);
+            }
+            context.SaveChanges();
+
             //roles
             var roles = new List<Role>
             {
-                new Role{ClientId = 1, RecruiterId = 1, Title = "MVC Senior Developer", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Role{ClientId = 1, RecruiterId = 2, Title = "MVC Senior Developer", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Role{ClientId = 1, RecruiterId = 2, Title = "MVC Junior Developer", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Role{ClientId = 1, Title = "MVC Junior Developer", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Role{ClientId = 2, RecruiterId = 1, Title = "Webforms Senior Developer", Tags = new List<string>(){".net", "c#", "mvc"}, CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Role{ClientId = 2, RecruiterId = 1, Title = "Webforms Junior Developer", Tags = new List<string>(){".net", "c#", "asp.net", "webforms"}, CreateDate = DateTime.Now, CreateUser = "seeder"}
+                new Role{ClientId = 1, RecruiterId = 1, Title = "MVC Senior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Role{ClientId = 1, RecruiterId = 2, Title = "MVC Senior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Role{ClientId = 1, RecruiterId = 2, Title = "MVC Junior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Role{ClientId = 1, Title = "MVC Junior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Role{ClientId = 2, RecruiterId = 1, Title = "Webforms Senior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Role{ClientId = 2, RecruiterId = 1, Title = "Webforms Junior Developer", CreateDate = DateTime.Now, CreateUser = "seeder"}
             };
             roles.ForEach(c => context.Roles.Add(c));
+            context.SaveChanges();
+
+            foreach (Role role in roles)
+            {
+                role.Tags = new List<Tag>();
+                role.Tags.Add(tags[0]);
+                role.Tags.Add(tags[1]);
+                role.Tags.Add(tags[2]);
+                if (role.RoleId > 4)
+                    role.Tags.Add(tags[3]);
+                else
+                    role.Tags.Add(tags[4]);
+
+                context.Roles.Attach(role);
+            }
             context.SaveChanges();
 
             //applications

@@ -10,6 +10,7 @@ namespace Recruitment.Model
     {
         public int EventId { get; set; }
         public string Text { get; set; }
+        public EventType EventType { get; set; }
 
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }

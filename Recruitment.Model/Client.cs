@@ -10,19 +10,8 @@ namespace Recruitment.Model
     {
         public int ClientId { get; set; }
         public string Name { get; set; }
-        [NotMapped]
-        public List<string> Tags
-        {
-            get
-            {
-                return this.TagList.Split(';').ToList();
-            }
-            set 
-            {
-                this.TagList = string.Join(";", value);
-            }
-        }
-        public string TagList { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Recruiter> Recruiters { get; set; }
         

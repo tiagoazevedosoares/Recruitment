@@ -13,7 +13,7 @@ namespace Recruitment.Model
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<string> Tags { get; set; }
+        public int? WrongPasswords { get; set; }
 
         public int? CompanyId { get; set; }
         public virtual Company Company { get; set; }
@@ -23,5 +23,7 @@ namespace Recruitment.Model
         public virtual ICollection<Profile> Profiles { get; set; }
         
         public virtual ICollection<Application> Applications { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }
