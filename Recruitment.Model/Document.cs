@@ -16,7 +16,7 @@ namespace Recruitment.Model
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
 
-        public int RecruiterId { get; set; }
+        public int? RecruiterId { get; set; }
         public virtual Recruiter Recruiter { get; set; }
 
         public int? RoleId { get; set; }

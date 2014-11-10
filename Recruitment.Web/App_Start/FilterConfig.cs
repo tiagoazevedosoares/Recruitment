@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Recruitment.Web.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Recruitment.Web
@@ -7,8 +8,8 @@ namespace Recruitment.Web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute());
+            filters.Add(new CustomHandleErrorAttribute());
         }
     }
 }

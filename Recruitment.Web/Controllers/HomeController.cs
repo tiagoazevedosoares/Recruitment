@@ -9,12 +9,9 @@ namespace Recruitment.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [AllowAnonymous]
         public ActionResult Index()
         {
-            var s = new UnitOfWork().RecruiterRepository.Get();
-
-            return View(s);
+            return View();
         }
     }
 }

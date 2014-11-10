@@ -11,8 +11,8 @@ namespace Recruitment.Data
     {
         private RecruitmentContext context = new RecruitmentContext();
 
-        private GenericRepository<Recruiter> recruiterRepository;
         private GenericRepository<Profile> profileRepository;
+        private RecruiterRepository recruiterRepository;
         private GenericRepository<Client> clientRepository;
         private GenericRepository<Role> roleRepository;
         private GenericRepository<Application> applicationRepository;
@@ -31,14 +31,14 @@ namespace Recruitment.Data
                 return this.profileRepository;
             }
         }
-        public GenericRepository<Recruiter> RecruiterRepository
+        public RecruiterRepository RecruiterRepository
         {
             get
             {
 
                 if (this.recruiterRepository == null)
                 {
-                    this.recruiterRepository = new GenericRepository<Recruiter>(context);
+                    this.recruiterRepository = new RecruiterRepository(context);
                 }
                 return this.recruiterRepository;
             }

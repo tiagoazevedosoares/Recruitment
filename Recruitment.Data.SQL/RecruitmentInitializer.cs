@@ -165,6 +165,15 @@ namespace Recruitment.Data
             };
             notes.ForEach(n => context.Notes.Add(n));
             context.SaveChanges();
+
+            //notes
+            var documents = new List<Document>
+            {
+                new Document(){ ProfileId = 1, Name = "Tiago_Soares.pdf", Type="pdf", Path=@"1\1\Tiago_Soares.pdf", CreateDate = DateTime.Now, CreateUser = "seeder" },
+                new Document(){ ProfileId = 1, Name = "Tiago_Soares.doc", Type="doc", Path=@"1\1\Tiago_Soares.doc", CreateDate = DateTime.Now, CreateUser = "seeder" }
+            };
+            documents.ForEach(n => context.Documents.Add(n));
+            context.SaveChanges();
         }
     }
 }
