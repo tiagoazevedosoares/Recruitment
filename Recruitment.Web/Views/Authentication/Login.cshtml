@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Login";
 }
-
 <div class="col-lg-4"></div>
 
 <div class="col-lg-4">
@@ -13,27 +12,32 @@
             </div>
         </div>
         <div class="panel-body">
+            @Html.ValidationSummary(true)
             @using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
 
                 <div class="form-group">
-                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "username" })
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "username" })
+                    </div>
                     @Html.ValidationMessageFor(m => m.Username)
                 </div>
                 <div class="form-group">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+                    </div>
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
-    <div class="form-group">
-        @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
-    </div>
-
-        <input type="submit" value="Log in" class="btn btn-primary btn-block" />
-        @**@
-        }
-    </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
+                </div>
+                    <input type="submit" value="Log in" class="btn btn-primary btn-block" />
+                    <span>@Html.ActionLink("Forgot Password?", "ForgotPassword", "Account")</span>
+            }
+        </div>
     </div>
 </div>
 <div class="col-lg-4"></div>

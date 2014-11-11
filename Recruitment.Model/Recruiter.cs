@@ -14,6 +14,7 @@ namespace Recruitment.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? WrongPasswords { get; set; }
+        public bool ChangePassword { get; set; }
 
         public int? CompanyId { get; set; }
         public virtual Company Company { get; set; }

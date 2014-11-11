@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Recruitment.Data
 {
-    public class RecruitmentInitializer : DropCreateDatabaseAlways<RecruitmentContext> //DropCreateDatabaseIfModelChanges<RecruitmentContext>
+    //public class RecruitmentInitializer : DropCreateDatabaseAlways<RecruitmentContext>
+    public class RecruitmentInitializer : DropCreateDatabaseIfModelChanges<RecruitmentContext>
     {
         protected override void Seed(RecruitmentContext context)
         {
@@ -42,8 +43,8 @@ namespace Recruitment.Data
             //recruiters
             var recruiters = new List<Recruiter>
             {
-                new Recruiter{CompanyId = 1, FirstName = "Tiago", LastName = "Soares", Email = "tiago@email.com", Password = "123", CreateDate = DateTime.Now, CreateUser = "seeder"},
-                new Recruiter{CompanyId = 1, FirstName = "Claudia", LastName = "Goncalves", Email = "claudia@email.com", Password = "123", CreateDate = DateTime.Now, CreateUser = "seeder"}
+                new Recruiter{CompanyId = 1, FirstName = "Tiago", LastName = "Soares", Email = "tiago@email.com", Password = "1000:4iOJJ8165i8thHrHdXC15IsNGSI5kuMr:Cn3tjsKl3T0pervc8gm2i1qkXnKAf4Fq", CreateDate = DateTime.Now, CreateUser = "seeder"},
+                new Recruiter{CompanyId = 1, FirstName = "Claudia", LastName = "Goncalves", Email = "claudia@email.com", Password = "1000:4iOJJ8165i8thHrHdXC15IsNGSI5kuMr:Cn3tjsKl3T0pervc8gm2i1qkXnKAf4Fq", CreateDate = DateTime.Now, CreateUser = "seeder"}
             };
             recruiters.ForEach(r => context.Recruiters.Add(r));
             context.SaveChanges();

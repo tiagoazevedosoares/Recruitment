@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Recruitment.Web.Controllers
 {
@@ -24,13 +25,22 @@ namespace Recruitment.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid && unitOfWork.RecruiterRepository.Login(model.Username, PasswordHash.PasswordHash.CreateHash(model.Password)))
+            if (ModelState.IsValid && unitOfWork.RecruiterRepository.Login(model.Username, model.Password))
             {
+                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+
                 return RedirectToLocal(returnUrl);
             }
 
             ModelState.AddModelError("", App_GlobalResources.Errors.LoginError);
             return View(model);
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return View();
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
