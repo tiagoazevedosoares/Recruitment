@@ -15,56 +15,83 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">@Strings.ToggleNavigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="/">Brand</a>
             </div>
             @if (Request.IsAuthenticated)
             {
             <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Strings.Profiles <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
+                                <li>@Html.ActionLink(Strings.Profiles, "List", "Profile")</li>
+                                <li>@Html.ActionLink(Strings.Roles, "List", "Role")</li>
+                                <li>@Html.ActionLink(Strings.Clients, "List", "Client")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Strings.Roles <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink(Strings.Profiles, "List", "Profile")</li>
+                                <li>@Html.ActionLink(Strings.Roles, "List", "Role")</li>
+                                <li>@Html.ActionLink(Strings.Clients, "List", "Client")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Strings.Clients <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink(Strings.Profiles, "List", "Profile")</li>
+                                <li>@Html.ActionLink(Strings.Roles, "List", "Role")</li>
+                                <li>@Html.ActionLink(Strings.Clients, "List", "Client")</li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li>@Html.ActionLink(SessionHelper.UserFullName, "Index", "Recruiter")</li>
                                 <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                @using (Html.BeginForm("LogOff", "Authentication", FormMethod.Post, HtmlHelpers.GetHtmlAttributes(id: "logoutForm")))
+                                {
+                                    @Html.AntiForgeryToken()
+                                }
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">@Strings.SignOut</a></li>
                             </ul>
                         </li>
                     </ul>
-                </div><!-- /.navbar-collapse -->
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Get, HtmlHelpers.GetHtmlAttributes(@class: "navbar-form navbar-right", id: "searchForm")))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="input-group">
+                            <input id="searchText" name="searchText" type="text" class="form-control" placeholder="search">
+                            <span class="input-group-btn">
+                                <button onclick="javascript: document.getElementById('searchForm').submit()" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>
+                    }
+                </div>
             }
-        </div><!-- /.container-fluid -->
+        </div>
     </nav>
+    <div id="quickSearchResult" class="col-sm-3 col-sm-offset-9 top"></div>
     <div class="container-fluid">
         @RenderBody()
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/Views/Shared/_Layout.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

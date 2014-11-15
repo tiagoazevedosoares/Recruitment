@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Recruitment.Web.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseViewModel
     {
         [Required]
         [EmailAddress]

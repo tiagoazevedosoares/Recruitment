@@ -23,7 +23,7 @@ input[type="checkbox"].input-validation-error {
     border: 0 none;
 }
 
-.validation-summary-errors {
+/*.validation-summary-errors {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
@@ -40,4 +40,10 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}*/
+
+.top { 
+    position: fixed;
+    z-index: 9999;
+    margin-top: -20px;
 }

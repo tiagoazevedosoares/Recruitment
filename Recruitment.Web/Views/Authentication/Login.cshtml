@@ -1,6 +1,6 @@
 ﻿@model Recruitment.Web.ViewModels.LoginViewModel
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = Strings.SignIn;
 }
 <div class="col-lg-4"></div>
 
@@ -8,34 +8,35 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="panel-title">
-                Sign In
+                @Strings.SignIn
             </div>
         </div>
         <div class="panel-body">
-            @Html.ValidationSummary(true)
-            @using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @role = "form" }))
+            @*@Html.ValidationSummary(true)*@
+            @Html.MessageDisplayer()
+            @using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, HtmlHelpers.GetHtmlAttributes(role: "form")))
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "username" })
+                        @Html.TextBoxFor(m => m.Username, HtmlHelpers.GetHtmlAttributes(@class: "form-control", placeholder: Strings.Username))
                     </div>
                     @Html.ValidationMessageFor(m => m.Username)
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+                        @Html.PasswordFor(m => m.Password, HtmlHelpers.GetHtmlAttributes(@class: "form-control", placeholder: Strings.Password))
                     </div>
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
                 </div>
-                    <input type="submit" value="Log in" class="btn btn-primary btn-block" />
-                    <span>@Html.ActionLink("Forgot Password?", "ForgotPassword", "Account")</span>
+                <input type="submit" value="@Strings.SignIn" class="btn btn-primary btn-block" />
+                <span>@Html.ActionLink(@Strings.ForgotPassword, "ForgotPassword", "Authentication")</span>
             }
         </div>
     </div>

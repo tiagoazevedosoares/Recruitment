@@ -61,11 +61,11 @@ namespace Recruitment.Web.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The user name or password provided is incorrect..
+        ///   Looks up a localized string similar to The username or password provided are incorrect..
         /// </summary>
-        public static string LoginError {
+        public static string Login {
             get {
-                return ResourceManager.GetString("LoginError", resourceCulture);
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
     }
