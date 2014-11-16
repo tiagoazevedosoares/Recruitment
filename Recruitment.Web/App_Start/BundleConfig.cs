@@ -18,6 +18,10 @@ namespace Recruitment.Web
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ladda").Include(
+                        "~/Scripts/spin.js",
+                        "~/Scripts/ladda*"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -25,7 +29,9 @@ namespace Recruitment.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap*",
-                        "~/Content/recruitment.css"));
+                        "~/Content/recruitment.css",
+                        "~/Content/ladda-themeless.css"));
+
         }
     }
 }

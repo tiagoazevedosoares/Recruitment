@@ -18,48 +18,47 @@ namespace Recruitment.Web.Helpers
             if (model != null && model.Messages.Any())
             {
                 StringBuilder sb = new StringBuilder();
-                if(model.Messages.Any(m=>m.MessageType == ViewModelMessageType.Error))
+                int previousType = -1;
+                foreach (var message in model.Messages.OrderBy(m => m.MessageType))
                 {
-                    sb.Append("<div class=\"alert alert-danger\" role=\"alert\">");
-                    foreach (var msg in model.Messages.Where(m => m.MessageType == ViewModelMessageType.Error))
+                    string @class = string.Empty;
+                    if (previousType != (int)message.MessageType)
                     {
-                        sb.Append(string.Format("<p>{0}</p>", msg.MessageText));
+                        if(previousType != -1)
+                            sb.Append("</div>");
+
+                        switch (message.MessageType)
+                        {
+                            case ViewModelMessageType.Error:
+                                @class = "danger";
+                                break;
+                            case ViewModelMessageType.Info:
+                                @class = "info";
+                                break;
+                            case ViewModelMessageType.Success:
+                                @class = "success";
+                                break;
+                            case ViewModelMessageType.Warning:
+                                @class = "warning";
+                                break;
+                        }
+                        sb.Append(string.Format("<div class=\"alert alert-dismissible alert-{0}\" role=\"alert\">", @class));
+                        sb.Append("<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>");
+
+                        previousType = (int)message.MessageType;
                     }
-                    sb.Append("</div>");
+                    sb.Append("<p>");
+                    sb.Append(string.IsNullOrEmpty(message.MessageTitle) ? string.Empty : string.Format("<strong>{0}</strong>", message.MessageTitle));
+                    sb.Append(message.MessageText);
+                    sb.Append("</p>");
                 }
-                if (model.Messages.Any(m => m.MessageType == ViewModelMessageType.Info))
-                {
-                    sb.Append("<div class=\"alert alert-info\" role=\"alert\">");
-                    foreach (var msg in model.Messages.Where(m => m.MessageType == ViewModelMessageType.Info))
-                    {
-                        sb.Append(string.Format("<p>{0}</p>", msg.MessageText));
-                    }
-                    sb.Append("</div>");
-                }
-                if (model.Messages.Any(m => m.MessageType == ViewModelMessageType.Success))
-                {
-                    sb.Append("<div class=\"alert alert-success\" role=\"alert\">");
-                    foreach (var msg in model.Messages.Where(m => m.MessageType == ViewModelMessageType.Success))
-                    {
-                        sb.Append(string.Format("<p>{0}</p>", msg.MessageText));
-                    }
-                    sb.Append("</div>");
-                }
-                if (model.Messages.Any(m => m.MessageType == ViewModelMessageType.Warning))
-                {
-                    sb.Append("<div class=\"alert alert-warning\" role=\"alert\">");
-                    foreach (var msg in model.Messages.Where(m => m.MessageType == ViewModelMessageType.Warning))
-                    {
-                        sb.Append(string.Format("<p>{0}</p>", msg.MessageText));
-                    }
-                    sb.Append("</div>");
-                }
+                sb.Append("</div>");
+
                 return new MvcHtmlString(sb.ToString());
             }
-            
+
             return new MvcHtmlString("");
         }
-
 
         public static IDictionary<string, object> GetHtmlAttributes(string @class = "", string placeholder = "", string id = "", string name = "", string role = "", bool disabled = false)
         {
@@ -80,7 +79,7 @@ namespace Recruitment.Web.Helpers
             if (!string.IsNullOrEmpty(role))
                 htmlValues.Add("role", role);
 
-            if(disabled)
+            if (disabled)
                 htmlValues.Add("disabled", "disabled");
 
             return htmlValues;

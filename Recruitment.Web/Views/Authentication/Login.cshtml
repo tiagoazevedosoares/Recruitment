@@ -35,7 +35,7 @@
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
                 </div>
-                <input type="submit" value="@Strings.SignIn" class="btn btn-primary btn-block" />
+                <input type="submit" value="@Strings.SignIn" class="btn btn-success btn-block" />
                 <span>@Html.ActionLink(@Strings.ForgotPassword, "ForgotPassword", "Authentication")</span>
             }
         </div>

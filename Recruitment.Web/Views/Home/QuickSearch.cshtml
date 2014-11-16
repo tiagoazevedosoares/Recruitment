@@ -2,28 +2,28 @@
 <div class="list-group">
     @foreach (var profile in Model.Profiles)
     {
-        <a href="#" class="list-group-item">
+        <a href="@string.Format("Profile/{0}", profile.ProfileId)" class="list-group-item">
             <h4 class="list-group-item-heading">@profile.LastName, @profile.FirstName</h4>
             <p class="list-group-item-text">@Strings.Profile</p>
         </a>
     }
     @foreach (var client in Model.Clients)
     {
-        <a href="#" class="list-group-item">
+        <a href="@string.Format("Client/{0}", client.ClientId)" class="list-group-item">
             <h4 class="list-group-item-heading">@client.Name</h4>
             <p class="list-group-item-text">@Strings.Client</p>
         </a>
     }
     @foreach (var role in Model.Roles)
     {
-        <a href="#" class="list-group-item">
+        <a href="@string.Format("Role/{0}", role.RoleId)" class="list-group-item">
             <h4 class="list-group-item-heading">@role.Title</h4>
             <p class="list-group-item-text">@Strings.Role</p>
         </a>
     }
     @foreach (var recruiter in Model.Recruiters)
     {
-        <a href="#" class="list-group-item">
+        <a href="@string.Format("Recruiter/{0}", recruiter.RecruiterId)" class="list-group-item">
             <h4 class="list-group-item-heading">@recruiter.LastName, @recruiter.FirstName</h4>
             <p class="list-group-item-text">@Strings.Recruiter</p>
         </a>

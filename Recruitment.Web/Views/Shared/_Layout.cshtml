@@ -72,11 +72,10 @@
                     </ul>
                     @using (Html.BeginForm("Search", "Home", FormMethod.Get, HtmlHelpers.GetHtmlAttributes(@class: "navbar-form navbar-right", id: "searchForm")))
                     {
-                        @Html.AntiForgeryToken()
                         <div class="input-group">
                             <input id="searchText" name="searchText" type="text" class="form-control" placeholder="search">
                             <span class="input-group-btn">
-                                <button onclick="javascript: document.getElementById('searchForm').submit()" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                <button id="buttonSearch" onclick="javascript: document.getElementById('searchForm').submit()" class="btn btn-primary ladda-button" data-style="expand-left" type="button"><span class="glyphicon glyphicon-search ladda-label"></span></button>
                             </span>
                         </div>
                     }
@@ -84,13 +83,14 @@
             }
         </div>
     </nav>
-    <div id="quickSearchResult" class="col-sm-3 col-sm-offset-9 top"></div>
+    <div id="quickSearchResult" class="quick-search"></div>
     <div class="container-fluid">
         @RenderBody()
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/ladda")
     <script type="text/javascript" src="~/Scripts/Views/Shared/_Layout.js"></script>
     @RenderSection("scripts", required: false)
 </body>
